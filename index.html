@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naveed & Naveeza</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Georgia", serif;
+    background: linear-gradient(135deg, #f7f2ee, #f3e6ea);
+    color: #3a2a2a;
+    overflow: hidden;
+  }
+
+  .page {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .page.active {
+    display: flex;
+    animation: fadeSlide 0.8s ease;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    font-weight: normal;
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .btn {
+    margin-top: 2rem;
+    padding: 0.8rem 2.2rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .primary {
+    background: #7a3e4c;
+    color: #fff;
+  }
+
+  .primary:hover {
+    background: #5f2f3a;
+  }
+
+  .secondary {
+    background: transparent;
+    border: 1px solid #7a3e4c;
+    color: #7a3e4c;
+  }
+
+  /* Gallery */
+  .gallery {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .gallery img {
+    width: 220px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Hearts */
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 22px;
+    animation: floatUp 7s linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+  <h1>Naveeza</h1>
+  <h2>
+    This is not just a website.<br>
+    It’s a small reflection of how deeply you are loved.
+  </h2>
+  <button class="btn primary" onclick="goToPage(2)">Begin</button>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+  <h1>Us</h1>
+  <h2>
+    Every chapter of my life became softer,<br>
+    kinder, and more meaningful<br>
+    the day you became part of it.
+  </h2>
+
+  <div class="gallery">
+    <img src="images/naveed.jpeg" alt="Naveed">
+    <img src="images/naveeza.jpeg" alt="Naveeza">
+    <img src="images/wedding.jpeg" alt="Wedding">
+  </div>
+
+  <button class="btn primary" onclick="goToPage(3)">Next</button>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+  <h1>Our Journey</h1>
+  <h2>
+    From simple conversations<br>
+    to shared dreams and prayers,<br>
+    loving you has been my easiest decision.
+  </h2>
+  <button class="btn primary" onclick="goToPage(4)">Continue</button>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+  <h1>Naveeza</h1>
+  <h2>
+    Will you be my Valentine,<br>
+    not just today,<br>
+    but for every version of tomorrow?
+  </h2>
+
+  <button class="btn primary" onclick="yesClicked()">Yes</button>
+  <button class="btn secondary" id="noBtn">No</button>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+  <h1>Forever</h1>
+  <h2>
+    Loving you is my constant.<br>
+    My calm.<br><br>
+    Always yours,<br>
+    Naveed
+  </h2>
+</section>
+
+<script>
+  function goToPage(n) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + n).classList.add('active');
+  }
+
+  function yesClicked() {
+    goToPage(5);
+    startHearts();
+  }
+
+  document.getElementById("noBtn").addEventListener("mouseover", function () {
+    this.style.position = "absolute";
+    this.style.left = Math.random() * 70 + "%";
+    this.style.top  = Math.random() * 60 + "%";
+  });
+
+  function startHearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "🤍";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 400);
+  }
+</script>
+
+</body>
+</html>
